@@ -1,1 +1,4 @@
-"Movies titles"
+<h1>Movie titles</h1>
+<% @movies.each do |movie| %>
+ <h2><%=  movie["title"] %></h2>
+ <% end %>
