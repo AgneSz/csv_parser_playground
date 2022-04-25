@@ -1,6 +1,8 @@
 require 'csv' 
 
 class StaticPagesController < ApplicationController
+
+
   def home
     # CSV.read does not account for headers
     # CSV.read returns array of arrays; @title[0] => header array;
@@ -11,6 +13,13 @@ class StaticPagesController < ApplicationController
     # CSV::Row is part an array, part hash;
     # array: @movies.first[3] => returns value for director key, but accessed by index, not by the key name;
     # hash: @movies.first["director"] => return value for director key, accessed by key as ususally in hash
-    @movies = CSV.foreach(("db/netflix_titles.csv"), headers: true, col_sep: ",") 
+    @movies = CSV.foreach(("db/netflix_titles.csv"), headers: true, col_sep: ",")
+    @pageNumber = params[:page]
+
+    # movies_per_page = 50
+    # @ = @title.length / movies_per_page
+    # # byebug
+    # # post_per_page = 25
+    # @movies_per_page = @title.length / post_per_page
   end
 end
